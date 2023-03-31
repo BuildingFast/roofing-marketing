@@ -385,6 +385,38 @@
 
 
         <!-- JS here -->
+ 
+        <script>
+          const apiKey = '7c1ce71f232d62084b1fe5239284b39bcecab71857adc3129b0ca45fbfa060ce79788eea53155cfb3726c5c66525de9b4c0b5c10e24f197422385e7a831232d9e5515e349f0413576af1a3b547870f20ec9e92a46a80127a6b0c608b271051f51495851651f39744d0637e0020cc8ae2806caf2f77b34d4910d87afbc93e6cc0';
+
+          async function fetchProjects() {
+            const url = 'http://localhost:1337/api/projects';
+
+            // console.log("✅ Fetching projects")
+            try {
+              const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                  'Authorization': `Bearer ${apiKey}`
+
+                },
+              });
+
+              if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+              }
+
+              const data = await response.json();
+              console.log('Projects:', data);
+              return data;
+            } catch (error) {
+              console.error('Error fetching projects:', error);
+              return null;
+            }
+          }
+
+          fetchProjects();
+        </script> 
         <script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/imagesloaded.pkgd.min.js"></script>
